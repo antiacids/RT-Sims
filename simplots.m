@@ -44,7 +44,7 @@ for angle = anglerange
         % machVtimeplot
         figure(1);
         hold on;
-        machVtimeplot(simtable, 'color', masscolor);
+        machVtimeplot(simtable); %, 'color', masscolor);
         
         % machValtplot
         figure(2);
