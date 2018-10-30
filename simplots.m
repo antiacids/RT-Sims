@@ -1,7 +1,7 @@
 %function [] = simplots()
 % Wrapper for plotting. Makes plots for a range of sims. 
 
-dir =  '/home/god/Documents/rocket-team/4-2-18Sims/';
+dir =  '/Users/shannon/Documents/GitHub/RT-Sims/Simname/';
 % dir = 'directory with simfiles' e.g. '/home/god/Documents/rocket-team/4-2-18Sims'
 
 
