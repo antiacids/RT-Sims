@@ -61,8 +61,7 @@ for angle = anglerange
 
             % altVtimeplot
             figure(4);
-            hold on; 
-            altVtimeplot(simtable);
+            hold 
         
         
         end
