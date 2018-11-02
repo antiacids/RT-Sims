@@ -1,8 +1,8 @@
-%function [] = simplots()
+function [] = simplots(dir)
 % Wrapper for plotting. Makes plots for a range of sims. 
 
-dir =  '/home/god/RT-Sims/sims/';
-% '/Users/shannon/Documents/GitHub/RT-Sims/Simname/';
+% dir =  '/home/god/RT-Sims/sims/';
+% dir = '/Users/shannon/Documents/GitHub/RT-Sims/Simname/';
 % dir = 'directory with simfiles' e.g. '/home/god/Documents/rocket-team/4-2-18Sims'
 
 
@@ -47,12 +47,12 @@ for angle = anglerange
             % machVtimeplot
             figure(1);
             hold on;
-            machVtimeplot(simtable); %, 'color', masscolor);
+            machVtimeplot(simtable,masscolor); %, 'color', masscolor);
 
             % machValtplot
             figure(2);
             hold on;
-            QVtimeplot(simtable);
+            QVtimeplot(simtable,masscolor);
 
             % forceVtimeplot
             figure(3);
@@ -62,7 +62,7 @@ for angle = anglerange
             % altVtimeplot
             figure(4);
             hold on; 
-            altVtimeplot(simtable);
+            altVtimeplot(simtable,masscolor);
         
         
         end
