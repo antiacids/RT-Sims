@@ -10,7 +10,15 @@ anglerange = [ 2 5 10];
 massrange = [130 150 170];
 thrustrange = [69 72 76];
 mass_scale = max(massrange) - min(massrange);
+thrust_scale = max(thrustrange) - min(thrustrange);
 
+%mass before different elements to get compressive loads
+masses.dry = 0;
+masses.payload_bulkhead=6.596;
+mass.avionics_bulkhead=15.317;
+mass.recovery_coupler=34.539;
+mass.motor_case=34.539;
+mass.thrust_ring=77.088;
 
 % Clean up old plots
 close all;
@@ -29,8 +37,8 @@ for angle = anglerange
             try
                 simtable = readsim(angle,mass,thrust,dir);
             catch ME
-                disp('READ ERROR')
-                disp(ME)
+%                 disp('READ ERROR')
+%                 disp(ME)
                 continue
             end
 %             disp('NO ERROR');
@@ -42,29 +50,30 @@ for angle = anglerange
 
             % Formatting for all plots
             masscolor = (max(massrange)-mass) / mass_scale;
-            thrustspec = (max(thrustrange)-thrust)/
-            % LineWidth',2
+            idthrust = find(sort(thrustrange)==thrust);
+            thrustspec = idthrust;
             % TODO add to function parameters:  'Color',[0,0,masscolor]
 
             % machVtimeplot
             figure(1);
             hold on;
-            machVtimeplot(simtable,masscolor); %, 'color', masscolor);
+            machVtimeplot(simtable,masscolor,thrustspec); %, 'color', masscolor);
 
             % machValtplot
             figure(2);
             hold on;
-            QVtimeplot(simtable,masscolor);
+            QVtimeplot(simtable,masscolor,thrustspec);
 
             % forceVtimeplot
             figure(3);
             hold on;
-%             forceVtimeplot(mass,simtable);
+            masses = [mass, payload_bulkhead, avionics_bulkhead, recovery_coupler, motor_case, thrust_ring];
+            forceVtimeplot(simtable,mass,masscolor,thrustspec);
 
             % altVtimeplot
             figure(4);
             hold on; 
-            altVtimeplot(simtable,masscolor);
+            altVtimeplot(simtable,masscolor,thrustspec);
         
         
         end

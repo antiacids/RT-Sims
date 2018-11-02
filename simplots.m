@@ -13,11 +13,12 @@ mass_scale = max(massrange) - min(massrange);
 thrust_scale = max(thrustrange) - min(thrustrange);
 
 %mass before different elements to get compressive loads
-payload_bulkhead=6.596;
-avionics_bulkhead=15.317;
-recovery_coupler=34.539;
-motor_case=34.539;
-thrust_ring=77.088;
+masses.dry = 0;
+masses.payload_bulkhead=6.596;
+masses.avionics_bulkhead=15.317;
+masses.recovery_coupler=34.539;
+masses.motor_case=34.539;
+masses.thrust_ring=77.088;
 
 % Clean up old plots
 close all;
@@ -66,7 +67,8 @@ for angle = anglerange
             % forceVtimeplot
             figure(3);
             hold on;
-            %forceVtimeplot(simtable,mass,masscolor,thrustspec);
+            masses.dry = mass;
+            forceVtimeplot(simtable,masses,masscolor,thrustspec);
 
             % altVtimeplot
             figure(4);
