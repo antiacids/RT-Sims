@@ -4,4 +4,5 @@ function [altvtimeplot] = altVtimeplot(simtable,masscolor)
     title('Altitude vs. Time');
     xlabel('Time (s)');
     ylabel('Altitude (ft)');
+    
 end
