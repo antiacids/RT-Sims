@@ -4,8 +4,8 @@ function [altvtimeplot] = altVtimeplot(simtable,masscolor,thrustspec)
     title('Altitude vs. Time');
     xlabel('Time (s)');
     ylabel('Altitude (ft)');
-    [apogee_alt,apogee_index] = max(simtable.Altitude_ft_)
-    apogeestr = sprintf('\n\n%g',round(apogee_alt/1000,3,'significant'))
-    text(apogee_index/100,apogee_alt ,apogeestr,'HorizontalAlignment','center');
+    [apogee_alt,apogee_index] = max(simtable.Altitude_ft_);
+    apogeestr = sprintf('%g',round(apogee_alt/1000,3,'significant'));
+    text(apogee_alt, sim(apogee_index,1),apogeestr,'HorizontalAlignment','right');
     
 end
