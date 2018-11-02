@@ -10,7 +10,7 @@ anglerange = [ 2 5 10];
 massrange = [130 150 170];
 thrustrange = [69 72 76];
 mass_scale = max(massrange) - min(massrange);
-
+thrust_scale = max(thrustrange) - min(thrustrange);
 
 % Clean up old plots
 close all;
@@ -29,8 +29,8 @@ for angle = anglerange
             try
                 simtable = readsim(angle,mass,thrust,dir);
             catch ME
-                disp('READ ERROR')
-                disp(ME)
+%                 disp('READ ERROR')
+%                 disp(ME)
                 continue
             end
 %             disp('NO ERROR');
@@ -42,27 +42,29 @@ for angle = anglerange
 
             % Formatting for all plots
             masscolor = (max(massrange)-mass) / mass_scale;
+            idthrust = find(sort(thrustrange)==thrust);
+            thrustspec = idthrust;
             % TODO add to function parameters:  'Color',[0,0,masscolor]
 
             % machVtimeplot
             figure(1);
             hold on;
-            machVtimeplot(simtable,masscolor); %, 'color', masscolor);
+            machVtimeplot(simtable,masscolor,thrustspec); %, 'color', masscolor);
 
             % machValtplot
             figure(2);
             hold on;
-            QVtimeplot(simtable,masscolor);
+            QVtimeplot(simtable,masscolor,thrustspec);
 
             % forceVtimeplot
             figure(3);
             hold on;
-%             forceVtimeplot(mass,simtable);
+            forceVtimeplot(simtable,mass,masscolor,thrustspec);
 
             % altVtimeplot
             figure(4);
             hold on; 
-            altVtimeplot(simtable,masscolor);
+            altVtimeplot(simtable,masscolor,thrustspec);
         
         
         end
