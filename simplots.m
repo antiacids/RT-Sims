@@ -6,8 +6,8 @@ function [] = simplots(dir)
 % dir = 'directory with simfiles' e.g. '/home/god/Documents/rocket-team/4-2-18Sims'
 
 
-anglerange = [ 2 5 10];
-massrange = [130 150 170];
+anglerange = [2 5 10];
+massrange = [150 170 190];
 thrustrange = [69 72 76];
 mass_scale = max(massrange) - min(massrange);
 thrust_scale = max(thrustrange) - min(thrustrange);
@@ -15,10 +15,9 @@ thrust_scale = max(thrustrange) - min(thrustrange);
 %mass before different elements to get compressive loads
 masses.dry = 0;
 masses.payload_bulkhead=6.596;
-masses.avionics_bulkhead=15.317;
-masses.recovery_coupler=34.539;
-masses.motor_case=34.539;
-masses.thrust_ring=77.088;
+masses.av_bulkhead=9.317;
+masses.recovery_coupler=28.539;
+masses.motor_case=28.539;
 
 % Clean up old plots
 close all;
@@ -37,11 +36,11 @@ for angle = anglerange
             try
                 simtable = readsim(angle,mass,thrust,dir);
             catch ME
-%                 disp('READ ERROR')
-%                 disp(ME)
+                 disp('READ ERROR')
+                 disp(ME)
                 continue
             end
-%             disp('NO ERROR');
+             disp('NO ERROR');
             % Find bounds
             thisSimMax = max(simtable.MachNumber);
             if thisSimMax > Mmax
@@ -59,21 +58,54 @@ for angle = anglerange
             hold on;
             machVtimeplot(simtable,masscolor,thrustspec); %, 'color', masscolor);
 
-            % machValtplot
+            % Qvtimeplot
             figure(2);
             hold on;
             QVtimeplot(simtable,masscolor,thrustspec);
 
-            % forceVtimeplot
+            %AVtimeplot
             figure(3);
+            AVtimeplot(simtable,masscolor,thrustspec);
             hold on;
-            masses.dry = mass;
-            forceVtimeplot(simtable,masses,masscolor,thrustspec);
-
+            
+            
+            % forceVtimeplot
+%             figure(4);
+%             hold on;
+%             masses.dry = mass;
+%             
+%             subplot(2,2,1);
+%             forceVtimeplot(simtable,masscolor,masses.payload_bulkhead,thrustspec);
+%             title('Payload Bulkhead Compressive Load');
+%             axis([0 20 -15000 25000]);
+%             hold on;
+%             
+%             subplot(2,2,2);
+%             forceVtimeplot(simtable,masscolor,masses.av_bulkhead,thrustspec);
+%             title('Avionics Bulkhead Compressive Load');
+%             axis([0 20 -15000 25000]);
+%             hold on;
+%             
+%             subplot(2,2,3);
+%             forceVtimeplot(simtable,masscolor,masses.recovery_coupler,thrustspec);
+%             title('Recovery Coupler Compressive Load');
+%             axis([0 20 -15000 25000]);
+%             hold on;
+%             
+%             subplot(2,2,4);
+%             forceVtimeplot(simtable,masscolor,masses.motor_case,thrustspec);
+%             axis([0 20 -15000 25000]);
+%             title('Start of Motor Case Compressive Load');    
+%             
+%             sgtitle('Compressive loads')
+            
+                       
             % altVtimeplot
-            figure(4);
+            figure(5);
             hold on; 
             altVtimeplot(simtable,masscolor,thrustspec);
+            
+            
         
         
         end
