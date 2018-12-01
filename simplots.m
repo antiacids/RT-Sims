@@ -1,14 +1,13 @@
 function [] = simplots(dir)
 % Wrapper for plotting. Makes plots for a range of sims. 
 
-% dir =  '/home/god/RT-Sims/sims/';
-% dir = '/Users/shannon/Documents/GitHub/RT-Sims/Simname/';
-% dir = 'directory with simfiles' e.g. '/home/god/Documents/rocket-team/4-2-18Sims'
+% dir =  './sims/10.30/'
 
+addpath('/sims/10.30');
 
 anglerange = [2 5 10];
-massrange = [150 170 190];
-thrustrange = [69 72 76];
+massrange = [157 170 183];
+thrustrange = [1 2 3];
 mass_scale = max(massrange) - min(massrange);
 thrust_scale = max(thrustrange) - min(thrustrange);
 
