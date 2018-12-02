@@ -6,8 +6,13 @@ function [] = simplots(dir)
 addpath('/sims/10.30');
 
 anglerange = [2 5 10];
+<<<<<<< HEAD
 massrange = [157 170 183];
 thrustrange = [1 2 3];
+=======
+massrange = [130 150 170];
+thrustrange = [69 72 76];
+>>>>>>> 025092ce8bb9e997d5ea8c39ecd9fe6c759b6a1d
 mass_scale = max(massrange) - min(massrange);
 thrust_scale = max(thrustrange) - min(thrustrange);
 
@@ -17,6 +22,16 @@ masses.payload_bulkhead=1.1*6.596;
 masses.av_bulkhead=1.9*9.317;
 masses.recovery_coupler=1.1*28.539;
 masses.motor_case=0.9*28.539;
+
+
+
+do_thermal_nose_cone_tip = 1;
+if do_thermal_nose_cone_tip %if you want to perform thermal analysis, we need the thermal data
+    
+    load thermal_sim_inputs.mat %load the thermal sim inputs mat file
+    
+end
+
 
 % Clean up old plots
 close all;
@@ -103,6 +118,14 @@ for angle = anglerange
             figure(5);
             hold on; 
             altVtimeplot(simtable,masscolor,thrustspec);
+            
+            
+            if do_thermal_nose_cone_tip
+                simname = sprintf('A- %g, M- %g, T- %g',angle,mass,thrust);
+                nose_cone_thermal_analysis(simtable,thermal_sim_inputs,simname,masscolor,thrustspec)
+            end
+            
+            
             
             
         
