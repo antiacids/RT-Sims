@@ -13,10 +13,10 @@ thrust_scale = max(thrustrange) - min(thrustrange);
 
 %mass before different elements to get compressive loads
 masses.dry = 0;
-masses.payload_bulkhead=6.596;
-masses.av_bulkhead=9.317;
-masses.recovery_coupler=28.539;
-masses.motor_case=28.539;
+masses.payload_bulkhead=1.1*6.596;
+masses.av_bulkhead=1.9*9.317;
+masses.recovery_coupler=1.1*28.539;
+masses.motor_case=0.9*28.539;
 
 % Clean up old plots
 close all;
@@ -69,34 +69,34 @@ for angle = anglerange
             
             
             % forceVtimeplot
-%             figure(4);
-%             hold on;
-%             masses.dry = mass;
-%             
-%             subplot(2,2,1);
-%             forceVtimeplot(simtable,masscolor,masses.payload_bulkhead,thrustspec);
-%             title('Payload Bulkhead Compressive Load');
-%             axis([0 20 -15000 25000]);
-%             hold on;
-%             
-%             subplot(2,2,2);
-%             forceVtimeplot(simtable,masscolor,masses.av_bulkhead,thrustspec);
-%             title('Avionics Bulkhead Compressive Load');
-%             axis([0 20 -15000 25000]);
-%             hold on;
-%             
-%             subplot(2,2,3);
-%             forceVtimeplot(simtable,masscolor,masses.recovery_coupler,thrustspec);
-%             title('Recovery Coupler Compressive Load');
-%             axis([0 20 -15000 25000]);
-%             hold on;
-%             
-%             subplot(2,2,4);
-%             forceVtimeplot(simtable,masscolor,masses.motor_case,thrustspec);
-%             axis([0 20 -15000 25000]);
-%             title('Start of Motor Case Compressive Load');    
-%             
-%             sgtitle('Compressive loads')
+            figure(4);
+            hold on;
+            masses.dry = mass;
+            
+            subplot(2,2,1);
+            forceVtimeplot(simtable,masscolor,masses.payload_bulkhead,thrustspec);
+            title('Payload Bulkhead Compressive Load');
+            axis([0 20 -15000 25000]);
+            hold on;
+            
+            subplot(2,2,2);
+            forceVtimeplot(simtable,masscolor,masses.av_bulkhead,thrustspec);
+            title('Avionics Bulkhead Compressive Load');
+            axis([0 20 -15000 25000]);
+            hold on;
+            
+            subplot(2,2,3);
+            forceVtimeplot(simtable,masscolor,masses.recovery_coupler,thrustspec);
+            title('Recovery Coupler Compressive Load');
+            axis([0 20 -15000 25000]);
+            hold on;
+            
+            subplot(2,2,4);
+            forceVtimeplot(simtable,masscolor,masses.motor_case,thrustspec);
+            axis([0 20 -15000 25000]);
+            title('Start of Motor Case Compressive Load');    
+            
+            sgtitle('Compressive loads')
             
                        
             % altVtimeplot
