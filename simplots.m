@@ -117,7 +117,7 @@ for angle = anglerange
             
             
             if do_thermal_nose_cone_tip
-                simname = sprintf('A: %g, M: %g, T: %g',angle,mass,thrust);
+                simname = sprintf('A- %g, M- %g, T- %g',angle,mass,thrust);
                 nose_cone_thermal_analysis(simtable,thermal_sim_inputs,simname,masscolor,thrustspec)
             end
             
