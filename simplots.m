@@ -6,13 +6,13 @@ function [] = simplots(dir)
 addpath('/sims/10.30');
 
 anglerange = [2 5 10];
-<<<<<<< HEAD
-massrange = [157 170 183];
-thrustrange = [1 2 3];
-=======
+
+%massrange = [157 170 183];
+%thrustrange = [1 2 3];
+%=======
 massrange = [130 150 170];
 thrustrange = [69 72 76];
->>>>>>> 025092ce8bb9e997d5ea8c39ecd9fe6c759b6a1d
+%>>>>>>> 025092ce8bb9e997d5ea8c39ecd9fe6c759b6a1d
 mass_scale = max(massrange) - min(massrange);
 thrust_scale = max(thrustrange) - min(thrustrange);
 
@@ -31,7 +31,6 @@ if do_thermal_nose_cone_tip %if you want to perform thermal analysis, we need th
     load thermal_sim_inputs.mat %load the thermal sim inputs mat file
     
 end
-
 
 % Clean up old plots
 close all;
@@ -111,7 +110,7 @@ for angle = anglerange
             axis([0 20 -15000 25000]);
             title('Start of Motor Case Compressive Load');    
             
-            sgtitle('Compressive loads')
+            title('Compressive loads')
             
                        
             % altVtimeplot
@@ -122,9 +121,15 @@ for angle = anglerange
             
             if do_thermal_nose_cone_tip
                 simname = sprintf('A- %g, M- %g, T- %g',angle,mass,thrust);
+                disp('rn: ')
+                disp(thermal_sim_inputs.rn)
                 nose_cone_thermal_analysis(simtable,thermal_sim_inputs,simname,masscolor,thrustspec)
             end
             
+            if do_thermal_fins
+                simname = sprintf('A- %g, M- %g, T- %g',angle,mass,thrust);
+                fin_thermal_analysis(simtable,thermal_sim_inputs,simname,masscolor,thrustspec)
+            end
             
             
             

@@ -118,11 +118,8 @@ for n=1:nt % Timestep loop
     %get atmospheric free stream temperature
     Tatm = interp1(timevec,Tatmvec,time);
     
-    %get mach number
-    M = interp1(simtable.Time_sec_, simtable.MachNumber, time);
-    
     %add hot wall correction
-    T0 = Tatm*(1+(1.4-1)*M^2/2); %assumes gamma = 1.4
+    T0 = Tatm*(1+(1.4-1)*M^2/2); %
     gw = T(1)/T0;
     qdotnc = qdotnc*(1-gw);
     
