@@ -13,9 +13,10 @@ thrust_scale = max(thrustrange) - min(thrustrange);
 
 %mass before different elements to get compressive loads
 masses.dry = 0;
-masses.bulkhead = 5.45;
-masses.motor_case=172-138.88;
-masses.fin_can=4.415;
+masses.bulkhead = 1.3;
+masses.recovery_coupler=145.43+15;
+masses.motor_case=138.88;
+masses.fin_can=7.044;
 
 
 
@@ -85,24 +86,24 @@ for angle = anglerange
             subplot(2,2,1);
             forceVtimeplot(simtable,masscolor,masses.bulkhead,thrustspec);
             title('Payload Bulkhead Compressive Load');
-            axis([0 20 -300 600]);
+            axis([0 20 -15000 25000]);
             hold on;
 
             subplot(2,2,2);
             forceVtimeplot(simtable,masscolor,masses.fin_can,thrustspec);
             title('Fin Can Compressive Load');
-            axis([0 20 -300 600]);
+            axis([0 20 -25000 40000]);
             hold on;
             
-%             subplot(2,2,3);
-%             forceVtimeplot(simtable,masscolor,masses.recovery_coupler,thrustspec);
-%             title('Recovery Coupler Compressive Load');
-%             axis([0 20 -40000 90000]);
-%             hold on;
+            subplot(2,2,3);
+            forceVtimeplot(simtable,masscolor,masses.recovery_coupler,thrustspec);
+            title('Recovery Coupler Compressive Load');
+            axis([0 20 -25000 40000]);
+            hold on;
             
             subplot(2,2,4);
             forceVtimeplot(simtable,masscolor,masses.motor_case,thrustspec);
-            axis([0 20 -300 600]);
+            axis([0 20 -15000 25000]);
             title('Start of Motor Case Compressive Load');    
             
             sgtitle('Compressive loads')
