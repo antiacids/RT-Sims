@@ -5,14 +5,12 @@ function [] = simplots(dir)
 
 addpath('/sims/10.30');
 
-anglerange = [2 5 10];
-<<<<<<< HEAD
-massrange = [157 170 183];
+anglerange = [0, 2 5 10];
+
+massrange = [157 172 183]; %pounds
 thrustrange = [1 2 3];
-=======
-massrange = [130 150 170];
-thrustrange = [69 72 76];
->>>>>>> 025092ce8bb9e997d5ea8c39ecd9fe6c759b6a1d
+
+
 mass_scale = max(massrange) - min(massrange);
 thrust_scale = max(thrustrange) - min(thrustrange);
 
@@ -111,7 +109,7 @@ for angle = anglerange
             axis([0 20 -15000 25000]);
             title('Start of Motor Case Compressive Load');    
             
-            sgtitle('Compressive loads')
+            title('Compressive loads')
             
                        
             % altVtimeplot

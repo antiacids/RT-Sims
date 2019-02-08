@@ -1,6 +1,8 @@
 function [forceVtimeplot,maxforce] = forceVtimeplot(simtable,masscolor,loc,thrustspec)
     time=simtable.Time_sec_;
     a=simtable.Accel_ft_sec_2_;
+    disp('Mass of component whatever')
+    disp(loc)
     force=a.*loc;
     maxforce=max(force);
     forceVtimeplot = plot(simtable.Time_sec_, force, 'Color',[0,0,masscolor],'LineWidth',thrustspec);
