@@ -14,7 +14,8 @@ thrustrange = [1 2 3];
 mass_scale = max(massrange) - min(massrange);
 thrust_scale = max(thrustrange) - min(thrustrange);
 
-%mass before different elements to get compressive loads
+%mass before different elements to get compressive loads - this must be the
+%mass of everything above the component in Kg
 masses.dry = 0;
 masses.payload_bulkhead=1.1*6.596;
 masses.av_bulkhead=1.9*9.317;
