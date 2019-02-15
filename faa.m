@@ -3,10 +3,10 @@ function [] = faa(dir)
 
 % dir =  './sims/10.30/'
 
-addpath('./sims/1.26/');
+addpath('./sims/2.14/');
 
 anglerange = [0 2];
-massrange = [172 174];
+massrange = [230 232];
 thrustrange = [2 4];
 mass_scale = max(massrange) - min(massrange);
 thrust_scale = max(thrustrange) - min(thrustrange);
