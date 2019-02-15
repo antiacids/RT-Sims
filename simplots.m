@@ -8,6 +8,7 @@ addpath('/sims/1.26');
 anglerange = [0 2];
 massrange = [172 174];
 thrustrange = [2 4];
+
 mass_scale = max(massrange) - min(massrange);
 thrust_scale = max(thrustrange) - min(thrustrange);
 
@@ -105,7 +106,7 @@ for angle = anglerange
             axis([0 20 -300 600]);
             title('Start of Motor Case Compressive Load');    
             
-            sgtitle('Compressive loads')
+            title('Compressive loads')
             
                        
             % altVtimeplot
