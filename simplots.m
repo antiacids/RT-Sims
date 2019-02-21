@@ -1,4 +1,4 @@
-function [] = simplots(dir)
+function [] = simplots(mass, angle, thrust)
 % Wrapper for plotting. Makes plots for a range of sims. 
 
 dir = fileread('.dir');
@@ -6,8 +6,8 @@ dir = fileread('.dir');
 addpath('/sims/2.14');
 
 anglerange = [0 2];
-massrange = [230 232];
-thrustrange = [2 4];
+massrange = [0 211];
+thrustrange = [0 6];
 
 mass_scale = max(massrange) - min(massrange);
 thrust_scale = max(thrustrange) - min(thrustrange);
@@ -38,93 +38,37 @@ close all;
 % Initialize bound maximums
 Mmax = 0;
 
-for angle = anglerange
-    for mass = massrange
-        for thrust = thrustrange
-            % Try to read the file. If it DNE, skip to the next one.
-            try
-                simtable = readsim(angle,mass,thrust,dir);
-            catch ME
-                 disp('READ ERROR')
-                 disp(ME)
-                continue
-            end
+% for angle = anglerange
+%     for mass = massrange
+%         for thrust = thrustrange
+%             % Try to read the file. If it DNE, skip to the next one.
+% Copied from MathWorks
+selectedFiles = uigetfile('*.CSV', 'Multiselect', 'on');
+
+%             try
+%                 simtable = readsim(angle,mass,thrust,dir);
+%             catch ME
+%                  disp('READ ERROR')
+%                  disp(ME)
+%                 continue
+%             end
+disp(selectedFiles)
+disp(isa(selectedFiles, 'char'))
+if isa(selectedFiles, 'char')
+    simtable = readtable(char(strcat(dir, selectedFiles)));
+    simplots_impl(simtable, mass, massrange, mass_scale, masses, thrust, thrustrange, 0);
+else
+    for file = selectedFiles
+            simtable = readtable(char(strcat(dir, file)));
              disp('NO ERROR');
             % Find bounds
-            thisSimMax = max(simtable.MachNumber);
-            if thisSimMax > Mmax
-                Mmax = thisSimMax;
-            end
-
-            % Formatting for all plots
-            masscolor = (max(massrange)-mass) / mass_scale;
-            idthrust = find(sort(thrustrange)==thrust);
-            thrustspec = idthrust;
-            % TODO add to function parameters:  'Color',[0,0,masscolor]
-
-            % machVtimeplot
-            figure(1);
-            hold on;
-            machVtimeplot(simtable,masscolor,thrustspec); %, 'color', masscolor);
-
-            % Qvtimeplot
-            figure(2);
-            hold on;
-            QVtimeplot(simtable,masscolor,thrustspec);
-
-            %AVtimeplot
-            figure(3);
-            AVtimeplot(simtable,masscolor,thrustspec);
-            hold on;
-            
-            
-            % forceVtimeplot
-            figure(4);
-            hold on;
-            masses.dry = mass;
-            
-            subplot(2,2,1);
-            forceVtimeplot(simtable,masscolor,masses.bulkhead,thrustspec);
-            title('Payload Bulkhead Compressive Load');
-            axis([0 20 -300 600]);
-            hold on;
-
-            subplot(2,2,2);
-            forceVtimeplot(simtable,masscolor,masses.fin_can,thrustspec);
-            title('Fin Can Compressive Load');
-            axis([0 20 -300 600]);
-            hold on;
-            
-%             subplot(2,2,3);
-%             forceVtimeplot(simtable,masscolor,masses.recovery_coupler,thrustspec);
-%             title('Recovery Coupler Compressive Load');
-%             axis([0 20 -40000 90000]);
-%             hold on;
-            
-            subplot(2,2,4);
-            forceVtimeplot(simtable,masscolor,masses.motor_case,thrustspec);
-            axis([0 20 -300 600]);
-            title('Start of Motor Case Compressive Load');    
-            
-            title('Compressive loads')
-            
-                       
-            % altVtimeplot
-            figure(5);
-            hold on; 
-            altVtimeplot(simtable,masscolor,thrustspec);
-            
-            
-            if do_thermal_nose_cone_tip
-                simname = sprintf('A- %g, M- %g, T- %g',angle,mass,thrust);
-                nose_cone_thermal_analysis(simtable,thermal_sim_inputs,simname,masscolor,thrustspec)
-            end
+            MMax = simplots_impl(simtable, mass, massrange, mass_scale, masses, thrust, thrustrange, MMax);
             
             
             
             
         
         
-        end
-    end
+%         end
+   end
 end
