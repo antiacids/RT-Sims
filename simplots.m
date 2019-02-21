@@ -1,6 +1,8 @@
 function [] = simplots(dir)
 % Wrapper for plotting. Makes plots for a range of sims. 
 
+dir = fileread('.dir');
+
 addpath('/sims/2.14');
 
 anglerange = [0 2];
