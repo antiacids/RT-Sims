@@ -6,8 +6,8 @@ function [] = faa(dir)
 addpath('./sims/2.14/');
 
 anglerange = [0 2];
-massrange = [230 232];
-thrustrange = [2 4];
+massrange = [227 232];
+thrustrange = [2 8];
 mass_scale = max(massrange) - min(massrange);
 thrust_scale = max(thrustrange) - min(thrustrange);
 

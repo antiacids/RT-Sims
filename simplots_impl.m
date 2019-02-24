@@ -65,7 +65,7 @@ thisSimMax = max(simtable.MachNumber);
             altVtimeplot(simtable,masscolor,thrustspec);
             
             
-            if do_thermal_nose_cone_tip
+            if do_thermal_nose_cone_tip ==1
                 simname = sprintf('A- %g, M- %g, T- %g',angle,mass,thrust);
                 nose_cone_thermal_analysis(simtable,thermal_sim_inputs,simname,masscolor,thrustspec)
             end

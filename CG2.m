@@ -16,5 +16,5 @@ moment2 = mMotor2*(l2 - lMotor2/2) + mOther2*(lOther2/2);
 CG_2 = moment2/m2;
 
 moment = m1*(l_total - CG_1) + m2*CG_2;
-CG2 = moment/m_total;
+CG2 = moment/m_total
 end
