@@ -3,7 +3,7 @@ function [] = simplots(mass, angle, thrust)
 
 
 
-addpath('/sims/2.14');
+addpath('/sims/2.23');
 
 anglerange = [0 2];
 massrange = [0 227];
@@ -55,7 +55,7 @@ selectedFiles = uigetfile('*.CSV', 'Multiselect', 'on');
 disp(selectedFiles)
 disp(isa(selectedFiles, 'char'))
 if isa(selectedFiles, 'char')
-    simtable = readtable(char(strcat('./sims/2.14/', selectedFiles)));
+    simtable = readtable(char(strcat('./sims/2.23/', selectedFiles)));
     simplots_impl(simtable, mass, massrange, mass_scale, masses, thrust, thrustrange, 0);
 else
     for file = selectedFiles
