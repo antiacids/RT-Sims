@@ -1,9 +1,9 @@
 function [] = simplots(mass, angle, thrust)
 % Wrapper for plotting. Makes plots for a range of sims. 
-
-
-
-addpath('/sims/2.23');
+%make sure line 4 and 56 have the right directory to your files. also make
+%sure the angle mass and thrust range contain the parameters for your sim
+addpath('/sims/spaceshotA');
+dir='./sims/spaceshotA/';
 
 anglerange = [0 2];
 massrange = [0 227];
@@ -55,13 +55,14 @@ selectedFiles = uigetfile('*.CSV', 'Multiselect', 'on');
 disp(selectedFiles)
 disp(isa(selectedFiles, 'char'))
 if isa(selectedFiles, 'char')
-    simtable = readtable(char(strcat('./sims/2.23/', selectedFiles)));
+    simtable = readtable(char(strcat('./sims/spaceshotA/', selectedFiles)));
     simplots_impl(simtable, mass, massrange, mass_scale, masses, thrust, thrustrange, 0);
 else
     for file = selectedFiles
             simtable = readtable(char(strcat(dir, file)));
              disp('NO ERROR');
             % Find bounds
+            MMax=0;
             MMax = simplots_impl(simtable, mass, massrange, mass_scale, masses, thrust, thrustrange, MMax);
 
 %         end
