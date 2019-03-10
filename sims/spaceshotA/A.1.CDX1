@@ -89,10 +89,10 @@
     <CP>0</CP>
     <ModifiedBarrowman>True</ModifiedBarrowman>
     <Turbulence>True</Turbulence>
-    <SustainerNozzle>0</SustainerNozzle>
-    <Booster1Nozzle>0</Booster1Nozzle>
+    <SustainerNozzle>3.8</SustainerNozzle>
+    <Booster1Nozzle>5.3</Booster1Nozzle>
     <Booster2Nozzle>0</Booster2Nozzle>
-    <UseBooster1>False</UseBooster1>
+    <UseBooster1>True</UseBooster1>
     <UseBooster2>False</UseBooster2>
     <Comments />
   </RocketDesign>
