@@ -1,10 +1,10 @@
-function [mmax] = simplots_impl(simtable, mass, massrange, mass_scale, masses, thrust, thrustrange, Mmax)
+function [Mmax] = simplots_impl(simtable, mass, massrange, mass_scale, masses, thrust, thrustrange, Mmax)
 do_thermal_nose_cone_tip = 1;
 thisSimMax = max(simtable.MachNumber);
             if thisSimMax > Mmax
-                mmax = thisSimMax;
+                Mmax = thisSimMax;
             else
-                mmax = Mmax;
+                Mmax = Mmax;
             end
 
             % Formatting for all plots
@@ -17,15 +17,20 @@ thisSimMax = max(simtable.MachNumber);
             figure(1);
             hold on;
             machVtimeplot(simtable,masscolor,thrustspec); %, 'color', masscolor);
+            export_fig machVtime.pdf;
+
 
             % Qvtimeplot
             figure(2);
             hold on;
             QVtimeplot(simtable,masscolor,thrustspec);
+            export_fig QVtime.pdf;
+            append_pdfs ('compiled.pdf','machVtime.pdf', 'QVtime.pdf')
 
             %AVtimeplot
             figure(3);
             AVtimeplot(simtable,masscolor,thrustspec);
+            export_fig AVtime.pdf;
             hold on;
             
             
@@ -64,6 +69,7 @@ thisSimMax = max(simtable.MachNumber);
             figure(5);
             hold on; 
             altVtimeplot(simtable,masscolor,thrustspec);
+            export_fig altVtime.pdf
             
             
             if do_thermal_nose_cone_tip ==1
