@@ -1,4 +1,5 @@
 function [] = easyplot()
+templateObj = Template()
 x=linspace(0,2,5);
 y=2.*x;
 figure(1);
