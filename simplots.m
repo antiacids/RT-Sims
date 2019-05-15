@@ -6,7 +6,7 @@ addpath('/sims/spaceshotA');
 dir='./sims/spaceshotA/';
 
 situation=[];
-situation(1)=(2,170,
+situation(1)=(2,170)
 anglerange = [0 2];
 massrange = [0 227];
 thrustrange = [0 8];
